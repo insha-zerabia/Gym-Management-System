@@ -1,6 +1,8 @@
 # Gym-Management-System
 C++ Gym Management System implementing core OOP concepts and file handling to manage members, trainers, memberships, fees and reports for admin and users.
 
+
+
 Module 1 (Handled by Aiman Nauman) – Member & User Account Management 
 Files: member.h, member.cpp, maybe userAccount.h, userAccount.cpp 
 
@@ -10,6 +12,8 @@ Responsibilities:
 • Member login verification (for User side) 
 • Show logged‑in member’s own profile and membership details 
 • Read/write member data and login data from files 
+
+
 
 
 
@@ -26,6 +30,8 @@ Responsibilities:
 
 
 
+
+
 Module 3 (Handled by Hanzala Madni) – Membership Plan, Fee & Payment, Reports 
 Files: plan.h, plan.cpp, payment.h, payment.cpp 
 
@@ -37,6 +43,8 @@ Responsibilities:
 • For User side: show membership plan, last payment, and pending status 
 • File handling for plans and payments 
 • Member will first select the membership plan 
+
+
 
 
 
