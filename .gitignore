@@ -361,3 +361,18 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# --- Custom C++ Additions ---
+# Visual Studio "External Dependencies" and Intellisense database
+*.db
+*.opendb
+*.vc.db
+
+# Executables (in case they aren't in a standard Debug/Release folder)
+*.exe
+*.out
+*.app
+
+# MSVC local history and user settings
+.localhistory/
+*.sln.targets
