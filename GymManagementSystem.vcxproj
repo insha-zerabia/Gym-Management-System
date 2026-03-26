@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="attendance.cpp" />
     <ClCompile Include="gymSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="member.cpp" />
@@ -136,9 +137,10 @@
     <ClCompile Include="workout.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="attendance.h" />
     <ClInclude Include="gymSystem.h" />
-    <ClInclude Include="Header.h" />
     <ClInclude Include="member.h" />
+    <ClInclude Include="payment.h" />
     <ClInclude Include="plan.h" />
     <ClInclude Include="trainer.h" />
     <ClInclude Include="workout.h" />

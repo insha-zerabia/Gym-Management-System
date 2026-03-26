@@ -36,6 +36,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="attendance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="member.h">
@@ -50,10 +53,13 @@
     <ClInclude Include="plan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
+    <ClInclude Include="gymSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gymSystem.h">
+    <ClInclude Include="payment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="attendance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
