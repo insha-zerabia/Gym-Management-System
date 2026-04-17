@@ -32,7 +32,7 @@ Responsibilities:
 
 
 
-Module 3 (Handled by Hanzala Madni) – Membership Plan, Fee & Payment, Reports 
+Module 3 (Handled by Zemal Irfan) – Membership Plan, Fee & Payment, Reports 
 Files: plan.h, plan.cpp, payment.h, payment.cpp 
 
 Responsibilities: 
