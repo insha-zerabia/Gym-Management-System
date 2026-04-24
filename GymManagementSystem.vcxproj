@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="adminMenu.cpp" />
     <ClCompile Include="attendance.cpp" />
     <ClCompile Include="gymSystem.cpp" />
     <ClCompile Include="main.cpp" />
@@ -139,6 +140,8 @@
   <ItemGroup>
     <ClInclude Include="attendance.h" />
     <ClInclude Include="gymSystem.h" />
+    <ClInclude Include="adminMenu.h" />
+    <ClInclude Include="InterfaceMenu.h" />
     <ClInclude Include="member.h" />
     <ClInclude Include="payment.h" />
     <ClInclude Include="plan.h" />
