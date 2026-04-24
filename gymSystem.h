@@ -1,23 +1,25 @@
 #ifndef GYMSYSTEM_H
 #define GYMSYSTEM_H
 
+#include "InterfaceMenu.h"
+#include "adminMenu.h"
+#include "userMenu.h"
+#include <string>
+using namespace std;
+
 class GymSystem {
+private:
+    InterfaceMenu* currentMenu;
+
 public:
     GymSystem();
+    ~GymSystem();
 
     void run();
     void showStartMenu();
-    void adminMenu();
-    void memberMenu();
 
-    void handleMemberManagement();
-    void handleTrainerManagement();
-    void handlePlanAndPayment();
-    void handleWorkoutManagement();
-    void handleAttendance();
-
-    int adminLogin();
-    int memberLogin();
+    int  adminLogin();
+    string memberLogin();                      //returns member ID if successful, "" if failed
 };
 
 #endif
