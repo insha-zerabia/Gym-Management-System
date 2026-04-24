@@ -62,3 +62,29 @@ void Workout::loadFromFile(ifstream& ifs) {
     ifs.getline(name, 50);
     ifs.getline(description, 100);
 }
+
+// Implementation of UpdateWorkoutInfo
+void Workout::UpdateWorkoutInfo() {
+    char buffer[100];
+
+    cout << "Updating Workout ID: " << workoutID << endl;
+
+    cout << "Enter new Name: ";
+    cin.getline(buffer, 50);
+    setName(buffer);
+
+    cout << "Enter new Description: ";
+    cin.getline(buffer, 100);
+    setDescription(buffer);
+
+    cout << "Workout information updated.\n";
+}
+
+// Implementation of searchWorkoutByID
+Workout* Workout::searchWorkoutByID(Workout workouts[], int count, int id) {
+    for (int i = 0; i < count; ++i) {
+        if (workouts[i].getWorkoutID() == id)
+            return &workouts[i];
+    }
+    return nullptr; // Not found
+}

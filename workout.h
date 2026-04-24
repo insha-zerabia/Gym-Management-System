@@ -36,6 +36,10 @@ public:
     // File functions
     void saveToFile(std::ofstream& ofs) const;
     void loadFromFile(std::ifstream& ifs);
+
+    // New functions
+    void UpdateWorkoutInfo();
+    static Workout* searchWorkoutByID(Workout workouts[], int count, int id);
 };
 
 #endif // WORKOUT_H

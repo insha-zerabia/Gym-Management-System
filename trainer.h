@@ -43,6 +43,10 @@ public:
 
     // Operator overloading
     bool operator==(const Trainer& rhs) const;
+
+    // New functions
+    void UpdateTrainerInfo(); // To update trainer details
+    static Trainer* searchTrainerByID(Trainer trainers[], int count, int id);
 };
 
-#endif // TRAINER_H#pragma once
+#endif // TRAINER_H
