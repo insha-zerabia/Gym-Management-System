@@ -29,14 +29,14 @@ int Workout::getWorkoutID() const { return workoutID; }
 void Workout::setWorkoutID(int id) { workoutID = id; }
 
 void Workout::getName(char* buffer) const {
-    strcpy_s(buffer, name);
+    strcpy(buffer, name);
 }
 void Workout::setName(const char* n) {
     strcpy_s(name, n);
 }
 
 void Workout::getDescription(char* buffer) const {
-    strcpy_s(buffer, description);
+    strcpy(buffer, description);
 }
 void Workout::setDescription(const char* desc) {
     strcpy_s(description, desc);

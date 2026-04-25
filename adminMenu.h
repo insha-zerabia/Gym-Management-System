@@ -3,6 +3,7 @@
 #define ADMINMENU_H
 
 #include "InterfaceMenu.h"
+#include "attendance.h"  
 
 // AdminMenu INHERITS from IMenu
 // This satisfies the INHERITANCE OOP requirement
