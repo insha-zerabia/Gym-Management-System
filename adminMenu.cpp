@@ -76,7 +76,15 @@ void AdminMenu::manageWorkoutsMenu()
 
 void AdminMenu::manageAttendanceMenu()
 {
-    // Your attendance class will be called here (Step 2b later)
-    cout << "\n[Attendance - your code goes here]\n";
-    system("pause");
+    int choice;
+    do {
+        system("cls");
+        cout << " ATTENDANCE\n";
+        cout << " 1. View all attendance\n";
+        cout << " 2. Generate summary\n";
+        cout << " 0. Back\n Choice: ";
+        cin >> choice;
+        if (choice == 1) { attendance.viewAllAttendance(); system("pause"); }
+        if (choice == 2) { attendance.generateSummary();   system("pause"); }
+    } while (choice != 0);
 }

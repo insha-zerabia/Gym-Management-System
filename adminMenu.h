@@ -9,7 +9,7 @@
 class AdminMenu : public InterfaceMenu {
 private:
     bool running;
-
+    AttendanceManager attendance;
 public:
     AdminMenu();
     ~AdminMenu();
