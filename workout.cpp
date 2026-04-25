@@ -3,22 +3,22 @@ using namespace std;
 
 // Default constructor
 Workout::Workout() : workoutID(0) {
-    strcpy(name, "");
-    strcpy(description, "");
+    strcpy_s(name, "");
+    strcpy_s(description, "");
 }
 
 // Parameterized constructor
 Workout::Workout(int id, const char* n, const char* desc)
     : workoutID(id) {
-    strcpy(name, n);
-    strcpy(description, desc);
+    strcpy_s(name, n);
+    strcpy_s(description, desc);
 }
 
 // Copy constructor
 Workout::Workout(const Workout& other)
     : workoutID(other.workoutID) {
-    strcpy(name, other.name);
-    strcpy(description, other.description);
+    strcpy_s(name, other.name);
+    strcpy_s(description, other.description);
 }
 
 // Destructor
@@ -29,17 +29,17 @@ int Workout::getWorkoutID() const { return workoutID; }
 void Workout::setWorkoutID(int id) { workoutID = id; }
 
 void Workout::getName(char* buffer) const {
-    strcpy(buffer, name);
+    strcpy_s(buffer, name);
 }
 void Workout::setName(const char* n) {
-    strcpy(name, n);
+    strcpy_s(name, n);
 }
 
 void Workout::getDescription(char* buffer) const {
-    strcpy(buffer, description);
+    strcpy_s(buffer, description);
 }
 void Workout::setDescription(const char* desc) {
-    strcpy(description, desc);
+    strcpy_s(description, desc);
 }
 
 // Display info
