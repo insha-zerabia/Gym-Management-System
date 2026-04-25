@@ -79,12 +79,41 @@ void AdminMenu::manageAttendanceMenu()
     int choice;
     do {
         system("cls");
-        cout << " ATTENDANCE\n";
-        cout << " 1. View all attendance\n";
-        cout << " 2. Generate summary\n";
-        cout << " 0. Back\n Choice: ";
+        cout << "    ATTENDANCE MANAGEMENT\n";
+        cout << " 1. View All Attendance Records\n";
+        cout << " 2. Generate Summary\n";
+        cout << " 3. Manual Check-In for Member\n";
+        cout << " 4. Manual Check-Out for Member\n";
+        cout << " 0. Back\n";
+        cout << " Choice: ";
         cin >> choice;
-        if (choice == 1) { attendance.viewAllAttendance(); system("pause"); }
-        if (choice == 2) { attendance.generateSummary();   system("pause"); }
+
+        if (choice == 1)
+        {
+            attendance.viewAllAttendance();
+            system("pause");
+        }
+        else if (choice == 2)
+        {
+            attendance.generateSummary();
+            system("pause");
+        }
+        else if (choice == 3)
+        {
+            string id;
+            cout << "Enter Member ID to check in: ";
+            cin >> id;
+            attendance.checkIn(id);
+            system("pause");
+        }
+        else if (choice == 4)
+        {
+            string id;
+            cout << "Enter Member ID to check out: ";
+            cin >> id;
+            attendance.checkOut(id);
+            system("pause");
+        }
+
     } while (choice != 0);
 }
