@@ -4,25 +4,25 @@ using namespace std;
 
 // Default constructor
 Trainer::Trainer() : trainerID(0) {
-    strcpy(name, sizeof(name), "");
-    strcpy(specialization, sizeof(specialization), "");
-    strcpy(contactNumber, sizeof(contactNumber), "");
+    strcpy_s(name, sizeof(name), "");
+    strcpy_s(specialization, sizeof(specialization), "");
+    strcpy_s(contactNumber, sizeof(contactNumber), "");
 }
 
 // Parameterized constructor
 Trainer::Trainer(int id, const char* n, const char* spec, const char* contact)
     : trainerID(id) {
-    strcpy(name, sizeof(name), n);
-    strcpy(specialization, sizeof(specialization), spec);
-    strcpy(contactNumber, sizeof(contactNumber), contact);
+    strcpy_s(name, sizeof(name), n);
+    strcpy_s(specialization, sizeof(specialization), spec);
+    strcpy_s(contactNumber, sizeof(contactNumber), contact);
 }
 
 // Copy constructor
 Trainer::Trainer(const Trainer& other)
     : trainerID(other.trainerID) {
-    strcpy(name, sizeof(name), other.name);
-    strcpy(specialization, sizeof(specialization), other.specialization);
-    strcpy(contactNumber, sizeof(contactNumber), other.contactNumber);
+    strcpy_s(name, sizeof(name), other.name);
+    strcpy_s(specialization, sizeof(specialization), other.specialization);
+    strcpy_s(contactNumber, sizeof(contactNumber), other.contactNumber);
 }
 
 // Destructor
@@ -35,24 +35,24 @@ void Trainer::setTrainerID(int id) {
 }
 
 void Trainer::getName(char* buffer) const {
-    strcpy(buffer, 50, name);
+    strcpy_s(buffer, 50, name);
 }
 void Trainer::setName(const char* n) {
-    strcpy(name, sizeof(name), n);
+    strcpy_s(name, sizeof(name), n);
 }
 
 void Trainer::getSpecialization(char* buffer) const {
-    strcpy(buffer, 50, specialization);
+    strcpy_s(buffer, 50, specialization);
 }
 void Trainer::setSpecialization(const char* spec) {
-    strcpy(specialization, sizeof(specialization), spec);
+    strcpy_s(specialization, sizeof(specialization), spec);
 }
 
 void Trainer::getContactNumber(char* buffer) const {
-    strcpy(buffer, 20, contactNumber);
+    strcpy_s(buffer, 20, contactNumber);
 }
 void Trainer::setContactNumber(const char* contact) {
-    strcpy(contactNumber, sizeof(contactNumber), contact);
+    strcpy_s(contactNumber, sizeof(contactNumber), contact);
 }
 
 // Display info

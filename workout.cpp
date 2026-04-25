@@ -1,24 +1,25 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "workout.h"
 using namespace std;
 
 // Default constructor
 Workout::Workout() : workoutID(0) {
-    strcpy_s(name, "");
-    strcpy_s(description, "");
+    strcpy(name, "");
+    strcpy(description, "");
 }
 
 // Parameterized constructor
 Workout::Workout(int id, const char* n, const char* desc)
     : workoutID(id) {
-    strcpy_s(name, n);
-    strcpy_s(description, desc);
+    strcpy(name, n);
+    strcpy(description, desc);
 }
 
 // Copy constructor
 Workout::Workout(const Workout& other)
     : workoutID(other.workoutID) {
-    strcpy_s(name, other.name);
-    strcpy_s(description, other.description);
+    strcpy(name, other.name);
+    strcpy(description, other.description);
 }
 
 // Destructor
@@ -32,7 +33,7 @@ void Workout::getName(char* buffer) const {
     strcpy(buffer, name);
 }
 void Workout::setName(const char* n) {
-    strcpy_s(name, n);
+    strcpy(name, n);
 }
 
 void Workout::getDescription(char* buffer) const {
