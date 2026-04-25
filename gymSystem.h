@@ -5,7 +5,6 @@
 #include "adminMenu.h"
 #include "userMenu.h"
 #include <string>
-using namespace std;
 
 class GymSystem {
 private:
