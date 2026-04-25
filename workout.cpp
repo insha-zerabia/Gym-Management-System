@@ -40,7 +40,7 @@ void Workout::getDescription(char* buffer) const {
     strcpy(buffer, description);
 }
 void Workout::setDescription(const char* desc) {
-    strcpy_s(description, desc);
+    strcpy(description, desc);
 }
 
 // Display info
