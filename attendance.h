@@ -3,6 +3,7 @@
 #define ATTENDANCE_H
 
 #include <string>
+#include <fstream>
 using std::string;
 
 class AttendanceRecord {
