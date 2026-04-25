@@ -9,6 +9,8 @@
 class GymSystem {
 private:
     InterfaceMenu* currentMenu;
+    void loadAllData();
+    void saveAllData();
 
 public:
     GymSystem();

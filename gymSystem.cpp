@@ -16,8 +16,21 @@ GymSystem::~GymSystem()
     }
 }
 
+void GymSystem::loadAllData()
+{
+    //code  pending
+}
+
+
+void GymSystem::saveAllData()
+{
+    //code pending
+}
+
+
 void GymSystem::run() 
 {
+    loadAllData();
     int choice;
     do {
         showStartMenu();
@@ -48,6 +61,7 @@ void GymSystem::run()
         }
 
     } while (choice != 0);
+    saveAllData();
 }
 
 void GymSystem::showStartMenu()
