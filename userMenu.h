@@ -3,6 +3,7 @@
 #define USERMENU_H
 
 #include "InterfaceMenu.h"
+#include "attendance.h" 
 #include <string>
 using namespace std;
 
@@ -12,6 +13,7 @@ class UserMenu : public InterfaceMenu {
 private:
     bool running;
     string loggedInMemberId; 
+    AttendanceManager attendance;
 
 public:
     UserMenu();

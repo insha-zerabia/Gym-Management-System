@@ -85,8 +85,34 @@ void UserMenu::viewMyPayments()
     system("pause");
 }
 
-void UserMenu::markAttendance() 
+void UserMenu::markAttendance()
 {
-    cout << "\n[Attendance]\n";
-    system("pause");
+    int choice;
+    do 
+    {
+        system("cls");
+        cout << "    ATTENDANCE\n";
+        cout << " 1. Check In\n";
+        cout << " 2. Check Out\n";
+        cout << " 3. View My Attendance History\n";
+        cout << " 0. Back\n";
+        cout << " Choice: ";
+        cin >> choice;
+
+        if (choice == 1)
+        {
+            attendance.checkIn(loggedInMemberId);
+            system("pause");
+        }
+        else if (choice == 2)
+        {
+            attendance.checkOut(loggedInMemberId);
+            system("pause");
+        }
+        else if (choice == 3)
+        {
+            attendance.viewMemberAttendance(loggedInMemberId);
+            system("pause");
+        }
+    } while (choice != 0);
 }
