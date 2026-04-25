@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="adminMenu.cpp" />
     <ClCompile Include="attendance.cpp" />
     <ClCompile Include="gymSystem.cpp" />
     <ClCompile Include="main.cpp" />
@@ -134,15 +135,19 @@
     <ClCompile Include="payment.cpp" />
     <ClCompile Include="plan.cpp" />
     <ClCompile Include="trainer.cpp" />
+    <ClCompile Include="userMenu.cpp" />
     <ClCompile Include="workout.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="attendance.h" />
     <ClInclude Include="gymSystem.h" />
+    <ClInclude Include="adminMenu.h" />
+    <ClInclude Include="InterfaceMenu.h" />
     <ClInclude Include="member.h" />
     <ClInclude Include="payment.h" />
     <ClInclude Include="plan.h" />
     <ClInclude Include="trainer.h" />
+    <ClInclude Include="userMenu.h" />
     <ClInclude Include="workout.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

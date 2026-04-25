@@ -2,114 +2,98 @@
 #include <iostream>
 using namespace std;
 
-GymSystem::GymSystem() {
-  
+GymSystem::GymSystem()
+{
+    currentMenu = nullptr; 
 }
 
-void GymSystem::run()
+GymSystem::~GymSystem() 
+{
+    if (currentMenu != nullptr)
+    {
+        delete currentMenu;
+        currentMenu = nullptr;
+    }
+}
+
+void GymSystem::run() 
 {
     int choice;
     do {
         showStartMenu();
         cin >> choice;
 
-        if (choice == 1) {
-            if (adminLogin() == 1) adminMenu();
+        if (choice == 1)
+        {
+            if (adminLogin() == 1) 
+            {
+                currentMenu = new AdminMenu();
+                currentMenu->handleInput();
+
+                delete currentMenu;
+                currentMenu = nullptr;
+            }
         }
-        else if (choice == 2) {
-            if (memberLogin() == 1) memberMenu();
+        else if (choice == 2) 
+        {
+            string memberId = memberLogin();
+            if (memberId != "")
+            {
+                currentMenu = new UserMenu(memberId);
+                currentMenu->handleInput();
+
+                delete currentMenu;
+                currentMenu = nullptr;
+            }
         }
+
     } while (choice != 0);
 }
 
-void GymSystem::showStartMenu() 
+void GymSystem::showStartMenu()
 {
     system("cls");
-    cout << "1. Login as Admin" << endl;
-    cout << "2. Login as Member" << endl;
-    cout << "0. Exit" << endl;
-    cout << "Choice: ";
+    cout << "    GYM MANAGEMENT SYSTEM       " << endl;
+    cout << " 1. Login as Admin              " << endl;
+    cout << " 2. Login as Member             " << endl;
+    cout << " 0. Exit                        " << endl;
+    cout << " Choice: ";
 }
 
 int GymSystem::adminLogin()
 {
-    char id[20], pass[20];
-    cout << "\nID: "; cin >> id;
-    cout << "Pass: "; cin >> pass;
+    string id, pass;
+    system("cls");
+    cout << "    Admin Login" << endl;
+    cout << "ID:       "; cin >> id;
+    cout << "Password: "; cin >> pass;
 
-    if (id[0] == 'a' && pass[0] == '1')                        //admin/1234 simple check
-    { 
-        cout << "Login successfully!" << endl;
+    // Temporary hardcoded check...will connect to file later
+    if (id == "admin" && pass == "1234") {
+        cout << "\nSuccessfully Logged in as Admin" << endl;
+        system("pause");
         return 1;
     }
-    cout << "can,t login";
-    return 0;
-}
-
-int GymSystem::memberLogin()
-{
-    char id[20], pass[20];
-    cout << "\nID: "; cin >> id;
-    cout << "Pass: "; cin >> pass;
-
-    if (id[0] == 'm' && pass[0] == '1')                        //member/1234 simple check
-    {
-        cout << "Login successfully!" << endl;
-        return 1;
-    }
-    cout << "can,t login";
-    return 0;
-}
-
-void GymSystem::adminMenu() 
-{
-    int choice;
-    do {
-        system("cls");
-        cout << "  ADMIN  " << endl;
-        cout << "1. Members" << endl;
-        cout << "2. Trainers" << endl;
-        cout << "3. Plans" << endl;
-        cout << "4. Workouts" << endl;
-        cout << "5. Attendance" << endl;
-        cout << "0. Exit" << endl;
-        cout << "Choice: "; cin >> choice;
-
-        if (choice == 1) handleMemberManagement();
-        else if (choice == 2) handleTrainerManagement();
-        else if (choice == 3) handlePlanAndPayment();
-        else if (choice == 4) handleWorkoutManagement();
-        else if (choice == 5) handleAttendance();
-    } while (choice != 0);
-}
-
-void GymSystem::memberMenu()
-{
-    cout << "\nWe need to write code for that ... " << endl;
+    cout << "\nInvalid credentials.Don't Scam me .." << endl;
     system("pause");
+    return 0;
 }
 
-void GymSystem::handleMemberManagement()
+string GymSystem::memberLogin() 
 {
-    cout << "Members (Aiman)" << endl; system("pause");
-}
+    string id, pass;
+    system("cls");
+    cout << "    Member Login" << endl;
+    cout << "Member ID: "; cin >> id;
+    cout << "Password:  "; cin >> pass;
 
-void GymSystem::handleTrainerManagement()
-{
-    cout << "Trainers (Zymal)" << endl; system("pause");
-}
-
-void GymSystem::handlePlanAndPayment()
-{
-    cout << "Plans (Hanzala)" << endl; system("pause");
-}
-
-void GymSystem::handleWorkoutManagement()
-{
-    cout << "Workouts (Zymal)" << endl; system("pause");
-}
-
-void GymSystem::handleAttendance() 
-{
-    cout << "Attendance marked!" << endl; system("pause");
+    //Temporary hardcoded check...Aiman will replace this when her file handling is done
+    if (id == "M001" && pass == "1234") {
+        cout << "\nLogin successful! Welcome." << endl;
+        system("pause");
+        return id;                                               //return the ID so UserMenu knows who logged in
+    }
+    cout << "\nInvalid credentials." << endl;
+    system("pause");
+    return ""; 
 }
