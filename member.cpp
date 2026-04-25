@@ -16,6 +16,7 @@ Member::Member(int age, string name, string memberId, string phoneNumber, string
     password(password)
 {}
 
+
 //copy constructor
 Member::Member(const Member& other)
 {
