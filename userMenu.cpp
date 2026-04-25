@@ -57,31 +57,46 @@ void UserMenu::handleInput()
 
 void UserMenu::viewMyProfile()
 {
-    cout << "\n[My Profile - Aiman's module goes here]\n";
+    system("cls");
+    cout << "    MY PROFILE\n";
+    cout << "  Member ID : " << loggedInMemberId << "\n";
+    cout << "\nWaiting for Aiman's Module\n";
     system("pause");
 }
 
 void UserMenu::viewMyPlan()
 {
-    cout << "\n[My Plan - Zemal's module goes here]\n";
+    system("cls");
+    cout << "    MY MEMBERSHIP PLAN\n";
+    cout << "  Member ID : " << loggedInMemberId << "\n";
+    cout << "\nWaiting for Zemal's Module\n";
     system("pause");
 }
 
-void UserMenu::viewMyTrainer() 
+void UserMenu::viewMyTrainer()
 {
-    cout << "\n[My Trainer - Zymal's module goes here]\n";
+    system("cls");
+    cout << "    MY TRAINER\n";
+    cout << "  Member ID : " << loggedInMemberId << "\n";
+    cout << "\nWaiting for Zymal's Module\n";
     system("pause");
 }
 
 void UserMenu::viewMyWorkout()
 {
-    cout << "\n[My Workout - Zymal's module goes here]\n";
+    system("cls");
+    cout << "    MY WORKOUT PLAN\n";
+    cout << "  Member ID : " << loggedInMemberId << "\n";
+    cout << "\nWaiting for Zymal's Module\n";
     system("pause");
 }
 
 void UserMenu::viewMyPayments()
 {
-    cout << "\n[My Payments - Zemal's module goes here]\n";
+    system("cls");
+    cout << "    MY PAYMENT HISTORY\n";
+    cout << "  Member ID : " << loggedInMemberId << "\n";
+    cout << "\nWaiting for Zemal's Module\n";
     system("pause");
 }
 
