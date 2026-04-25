@@ -95,7 +95,10 @@ void AttendanceRecord::loadFromFile(ifstream& ifs)
 }
 
 
-AttendanceManager::AttendanceManager() : count(0) {}
+AttendanceManager::AttendanceManager() : count(0)
+{
+    loadFromFile();
+}
 AttendanceManager::~AttendanceManager() {}
 
 string AttendanceManager::getCurrentDate() const
