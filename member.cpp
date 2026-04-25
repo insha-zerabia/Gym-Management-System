@@ -14,9 +14,7 @@ Member::Member(int age, string name, string memberId, string phoneNumber, string
     phoneNumber(phoneNumber),
     membershipType(membershipType),
     password(password)
-{
-    // Empty body - initialization already done
-}
+{}
 
 //copy constructor
 Member::Member(const Member& other)

@@ -15,7 +15,7 @@ private:
 	string password;
 public:
 	Member(); //default
-	Member(int age, string name, string memberId, string membershipType, string phoneNumber, string password);// parameterized
+	Member(int age, string name, string memberId, string phoneNumber, string membershipType, string password);// parameterized
 	Member(const Member& other);      // Copy constructor
 	Member& operator=(const Member& other);  // Assignment operator
 	~Member();//destructor
