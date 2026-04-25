@@ -21,11 +21,17 @@ Module 2 (Handled by Zymal Rizwan) – Trainer & Workout Management
 Files: trainer.h, trainer.cpp, workout.h, workout.cpp 
 
 Responsibilities: 
+
 • Add, view, update, delete trainer records 
+
 • Assign/change trainer for a member 
+
 • Create workout plans and assign them to members 
+
 • View/update workout schedule for each member 
+
 • For User side: show member’s assigned trainer + workout plan 
+
 • Store/load trainer and workout data using files 
 
 
