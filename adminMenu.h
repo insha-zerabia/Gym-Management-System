@@ -3,24 +3,38 @@
 #define ADMINMENU_H
 
 #include "InterfaceMenu.h"
-#include "attendance.h"  
+#include <string>
+using namespace std;
 
-// AdminMenu INHERITS from IMenu
-// This satisfies the INHERITANCE OOP requirement
+// Forward declarations — full headers are included in adminMenu.cpp
+class AttendanceManager;
+class UserAccount;
+class TrainerManager;
+class WorkoutManager;
+class PlanManagement;
+class PaymentManagement;
+
 class AdminMenu : public InterfaceMenu {
 private:
     bool running;
-    AttendanceManager attendance;
+
+    // These point to managers owned by GymSystem — AdminMenu does NOT own them
+    AttendanceManager* attendance;
+    UserAccount* members;
+    TrainerManager* trainers;
+    WorkoutManager* workouts;
+    PlanManagement* plans;
+    PaymentManagement* payments;
+
 public:
-    AdminMenu();
+    AdminMenu(AttendanceManager* att, UserAccount* mem,
+        TrainerManager* tr, WorkoutManager* wo,
+        PlanManagement* pl, PaymentManagement* pay);
     ~AdminMenu();
 
-    // These MUST be implemented because IMenu declared them pure virtual
-    // This satisfies POLYMORPHISM
-    void showMenu() override;
+    void showMenu()    override;
     void handleInput() override;
 
-    // Admin-specific sub-menu handlers
     void manageMembersMenu();
     void manageTrainersMenu();
     void managePlansMenu();

@@ -19,9 +19,10 @@ private:
 
     //File I/O 
     void loadFromFile();
-    void saveToFile() const;
+    
 
 public:
+    void saveToFile() const;
     // Constructor / Destructor
     UserAccount(string filename = "members.txt");
     ~UserAccount();
