@@ -2,7 +2,8 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+int main() 
+{
     GymSystem gym;
     gym.run();
     PlanManagement pm;
