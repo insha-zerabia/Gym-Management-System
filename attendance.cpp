@@ -123,7 +123,7 @@ string AttendanceManager::getCurrentTime() const
 
 void AttendanceManager::checkIn(string memberId)
 {
-    string today = getCurrentDate();                 //to check if already checked in today without checking out
+    string today = getCurrentDate();                  //to check if already checked in today without checking out
     for (int i = count - 1; i >= 0; i--) {
         if (records[i].getMemberId() == memberId && records[i].getDate() == today && !records[i].isCheckedOut())
         {

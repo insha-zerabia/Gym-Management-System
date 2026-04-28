@@ -27,8 +27,7 @@ private:
     PaymentManagement* payments;
 
 public:
-    AdminMenu(AttendanceManager* att, UserAccount* mem,
-        TrainerManager* tr, WorkoutManager* wo,
+    AdminMenu(AttendanceManager* att, UserAccount* mem,TrainerManager* tr, WorkoutManager* wo,
         PlanManagement* pl, PaymentManagement* pay);
     ~AdminMenu();
 

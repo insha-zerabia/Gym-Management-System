@@ -7,7 +7,6 @@
 
 class InterfaceMenu {
 public:
-
     virtual void showMenu() = 0;
     virtual void handleInput() = 0;
     virtual ~InterfaceMenu() {}

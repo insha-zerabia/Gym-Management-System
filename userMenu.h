@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 
-// Forward declarations — full headers are included in userMenu.cpp
+//Forward declarations — full headers are included in userMenu.cpp
 class AttendanceManager;
 class UserAccount;
 class TrainerManager;
@@ -19,7 +19,7 @@ private:
     bool   running;
     string loggedInMemberId;
 
-    // These point to managers owned by GymSystem — UserMenu does NOT own them
+    //These point to managers owned by GymSystem — UserMenu does NOT own them
     AttendanceManager* attendance;
     UserAccount* members;
     TrainerManager* trainers;
