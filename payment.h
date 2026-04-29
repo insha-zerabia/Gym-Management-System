@@ -27,7 +27,7 @@ int count;
 public:
 PaymentManagement();
 void addPayment(Payment p);
-void showPaymentHistory(int memberID);
+void showPaymentHistory(int memberID);             //user can see his own payment history 
 void checkUnpaidMembers();
 void createReport();
 void loadPayments();

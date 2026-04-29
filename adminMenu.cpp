@@ -23,7 +23,7 @@ AdminMenu::AdminMenu(AttendanceManager* att, UserAccount* mem,
 
 AdminMenu::~AdminMenu() {}
 
-void AdminMenu::showMenu()
+void AdminMenu::showMenu()                                                 //admin has rights to control all features 
 {
     system("cls");
     cout << "         ADMIN PANEL            \n\n\n\n\n";
