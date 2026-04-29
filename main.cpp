@@ -6,11 +6,11 @@ int main()
 {
    GymSystem gym;
    gym.run();
-   PlanManagement pm;
-   pm.loadPlans();
-   pm.addPlan(Plan(1, "Basic", 30, 1000));
-   pm.viewPlans();
-   pm.savePlans(); 
+   PlanManagement daq;
+   daq.loadPlans();
+   daq.addPlan(Plan(1, "Basic", 30, 1000));
+   daq.viewPlans();
+   daq.savePlans(); 
    PaymentManagement pay;
    
    Payment p;
