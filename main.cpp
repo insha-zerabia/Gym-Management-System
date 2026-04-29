@@ -4,9 +4,9 @@ using namespace std;
 
 int main() 
 {
-    GymSystem gym;
-    gym.run();
-    PlanManagement pm;
+   GymSystem gym;
+   gym.run();
+   PlanManagement pm;
    pm.loadPlans();
    pm.addPlan(Plan(1, "Basic", 30, 1000));
    pm.viewPlans();
