@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 
-// Forward declarations — full headers are included in adminMenu.cpp
+// Forward declarations full headers are included in adminMenu.cpp
 class AttendanceManager;
 class UserAccount;
 class TrainerManager;
