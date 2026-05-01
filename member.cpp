@@ -2,23 +2,22 @@
 #include"member.h"
 using namespace std;
 
-//default
-Member::Member() : age(0), name(), memberId(), phoneNumber(), membershipType(), password() {}
+// Default Constructor
+Member::Member() : User(), age(0), name(""), memberId(""), phoneNumber(""), membershipType("") {}
 
-//parametrized
-Member::Member(int age, string name, string memberId, string phoneNumber, string membershipType, string password) :
+// Parameterized Constructor
+Member::Member(int age, string name, string memberId,
+    string phoneNumber, string membershipType, string password)
+    : User(memberId, password),   
+    age(age), name(name), memberId(memberId),
+    phoneNumber(phoneNumber), membershipType(membershipType)
+{
+}
 
-    age(age),
-    name(name),
-    memberId(memberId),
-    phoneNumber(phoneNumber),
-    membershipType(membershipType),
-    password(password)
-{}
 
 
 //copy constructor
-Member::Member(const Member& other)
+Member::Member(const Member& other) : User(other)
 {
     age = other.age;
     name = other.name;
@@ -72,10 +71,6 @@ void Member::setMembershipType(string newType)
     membershipType = newType;
 }
 
-void Member::setPassword(string newPassword)
-{
-    password = newPassword;
-}
 
 // Getters
 int Member::getAge() const
@@ -103,10 +98,6 @@ string Member::getMembershipType() const
     return membershipType;
 }
 
-string Member::getPassword() const
-{
-    return password;
-}
 
 // Display (admin view, all fields, password hidden)
 void Member::display() const
@@ -218,4 +209,14 @@ void Member::update()
     default:
         cout << "Invalid choice." << endl;
     }
+}
+
+void Member::displayDashboard() const
+{
+    displayOwnProfile();
+}
+
+string Member::getRole() const
+{
+    return "Member";
 }
