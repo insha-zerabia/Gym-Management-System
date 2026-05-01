@@ -43,5 +43,6 @@ public:
     void loadPayments();
     void savePayments();
     int getPendingCount() const;
+    void markAsPaid(string memberID);
 };
 #endif
