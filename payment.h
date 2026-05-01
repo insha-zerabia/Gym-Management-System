@@ -3,34 +3,37 @@
 #include <string>
 using namespace std;
 
-class Payment{
-
+class Payment {
 private:
-int paymentID;
-int memberID;
-string date;
-double amount;
-bool isPaid;
+    int    paymentID;
+    string memberID;
+    string date;
+    double amount;
+    bool   isPaid;
 
 public:
-Payment();
-void recordOfPayment(int memberID, double amount);
-int getMemberID() const;
-double getAmount() const;
-bool getStatus() const;
+    Payment();
+    Payment(const Payment& other);
+    Payment& operator=(const Payment& other);
+
+    void   recordOfPayment(string memberID, double amount, string date);
+    string getMemberID() const;
+    double getAmount()   const;
+    string getDate()     const;
+    bool   getStatus()   const;
 };
 
-class PaymentManagement{
+class PaymentManagement {
 private:
-Payment Payments[100];
-int count;
+    Payment Payments[100];
+    int count;
 public:
-PaymentManagement();
-void addPayment(Payment p);
-void showPaymentHistory(int memberID);             //user can see his own payment history 
-void checkUnpaidMembers();
-void createReport();
-void loadPayments();
-void savePayments();
+    PaymentManagement();
+    void addPayment(Payment p);
+    void showPaymentHistory(string memberID);
+    void checkUnpaidMembers();
+    void createReport();
+    void loadPayments();
+    void savePayments();
 };
 #endif
