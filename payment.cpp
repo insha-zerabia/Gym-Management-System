@@ -1,106 +1,136 @@
 #include "payment.h"
 #include <iostream>
-#include<fstream>
+#include <fstream>
+#include <ctime>
 using namespace std;
-Payment::Payment()
-{
-paymentID=0;
-memberID=0;
-amount=0;
-isPaid=false;
-}
-void Payment::recordOfPayment(int memberID, double amount)
-{
-this->memberID=memberID;
-this->amount=amount;
-this->isPaid=true;
-static int id=1;
-paymentID=id++;
 
-}
-int Payment::getMemberID() const
+static string getTodayDate()
 {
-    return memberID;
+    time_t now = time(nullptr);
+    char buf[20];
+    tm t;
+    localtime_s(&t, &now);
+    strftime(buf, sizeof(buf), "%Y-%m-%d", &t);
+    return string(buf);
 }
-double Payment::getAmount() const
+
+Payment::Payment() : paymentID(0), memberID(""), date(""), amount(0), isPaid(false) {}
+
+Payment::Payment(const Payment& o)
+    : paymentID(o.paymentID), memberID(o.memberID), date(o.date),
+    amount(o.amount), isPaid(o.isPaid) {
+}
+
+Payment& Payment::operator=(const Payment& o)
 {
-    return amount;
+    if (this != &o) {
+        paymentID = o.paymentID;
+        memberID = o.memberID;
+        date = o.date;
+        amount = o.amount;
+        isPaid = o.isPaid;
+    }
+    return *this;
 }
-bool Payment::getStatus() const
+
+void Payment::recordOfPayment(string mID, double amt, string d)
 {
-    return isPaid;
+    this->memberID = mID;
+    this->amount = amt;
+    this->isPaid = true;
+    this->date = d.empty() ? getTodayDate() : d;
+    static int id = 1;
+    paymentID = id++;
 }
-PaymentManagement::PaymentManagement()
+
+string Payment::getMemberID() const { return memberID; }
+double Payment::getAmount()   const { return amount; }
+string Payment::getDate()     const { return date; }
+bool   Payment::getStatus()   const { return isPaid; }
+
+PaymentManagement::PaymentManagement() : count(0) 
 {
-    count=0;
+    loadPayments();
 }
+
 void PaymentManagement::addPayment(Payment p)
 {
-if(count<100)
-{
-    Payments[count++]=p;
+    if (count < 100) Payments[count++] = p;
+    else cout << "Payment list is full." << endl;
 }
-else{
-    cout<<"Payment list is full."<<endl;
-}
-}
-void PaymentManagement::showPaymentHistory(int memberID)
+
+void PaymentManagement::showPaymentHistory(string memberID)
 {
-for(int i=0;i<count;i++)
-{
-    if(Payments[i].getMemberID()==memberID)
+    bool found = false;
+    for (int i = 0; i < count; i++)
     {
-        cout<<"Amount: "<<Payments[i].getAmount()<<", Status: "<<(Payments[i].getStatus()?"Paid ": "Unpaid ")<<endl;
+        if (Payments[i].getMemberID() == memberID)
+        {
+            cout << "Date: " << Payments[i].getDate()
+                << "  Amount: Rs." << Payments[i].getAmount()
+                << "  Status: " << (Payments[i].getStatus() ? "Paid" : "Unpaid")
+                << endl;
+            found = true;
+        }
     }
+    if (!found) cout << "No payment records found for member " << memberID << ".\n";
 }
-}
+
 void PaymentManagement::checkUnpaidMembers()
 {
-for(int i=0;i<count;i++)
-{
-    if(!Payments[i].getStatus())
-    {
-        cout<<"Unpaid member ID: "<<Payments[i].getMemberID()<<endl;
-    }
+    bool found = false;
+    for (int i = 0; i < count; i++)
+        if (!Payments[i].getStatus())
+        {
+            cout << "Unpaid Member ID: " << Payments[i].getMemberID() << endl;
+            found = true;
+        }
+    if (!found) cout << "No unpaid members.\n";
 }
-}
+
 void PaymentManagement::createReport()
 {
-double total=0;
-for(int i=0;i<count;i++)
-{
-    if(Payments[i].getStatus())
-    {
-        total+=Payments[i].getAmount();
-    }
+    double total = 0;
+    for (int i = 0; i < count; i++)
+        if (Payments[i].getStatus())
+            total += Payments[i].getAmount();
+    cout << "Total Collected: Rs." << total << endl;
 }
-cout<<"Total: "<<total<<endl;
-}
+
 void PaymentManagement::loadPayments()
 {
-ifstream file("payments.txt");
-count =0;
-int memberID;
-double amount;
-bool status;
-while(file>>memberID>>amount>>status)
-{
-    Payment p;
-    p.recordOfPayment(memberID,amount);
-    if(!status)
+    ifstream file("payments.txt");
+    if (!file) return;
+    count = 0;
+    string mID, date;
+    double amount;
+    bool   status;
+    while (file >> mID >> amount >> status >> date && count < 100)
     {
-        p=Payment();
+        Payment p;
+        p.recordOfPayment(mID, amount, date);
+        Payments[count++] = p;
     }
-    Payments[count++]=p;
+    file.close();
 }
-file.close();
-}
+
 void PaymentManagement::savePayments()
 {
-ofstream file("payments.txt");
-    for(int i=0;i<count;i++)
-    {
-        file<<Payments[i].getMemberID()<<" "<<Payments[i].getAmount()<<" "<<Payments[i].getStatus()<<endl;
-    }
-file.close();
+    ofstream file("payments.txt");
+    for (int i = 0; i < count; i++)
+        file << Payments[i].getMemberID() << " "
+        << Payments[i].getAmount() << " "
+        << Payments[i].getStatus() << " "
+        << Payments[i].getDate() << "\n";
+    file.close();
+}
+
+void Payment::recordPendingPayment(string mID, double amt, string d)
+{
+    this->memberID = mID;
+    this->amount = amt;
+    this->isPaid = false;  
+    this->date = d.empty() ? getTodayDate() : d;
+    static int id = 100;   
+    paymentID = id++;
 }
