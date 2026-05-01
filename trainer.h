@@ -15,8 +15,8 @@ private:
     string email;
     string availability;     
     int    experienceYears;
-    bool   isActive;
-    string name;
+    bool   isActive; //status
+ 
 public:
     // Constructors / Destructor
     Trainer();
