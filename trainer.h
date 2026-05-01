@@ -8,7 +8,7 @@ using namespace std;
 // stores data of trainers
 class Trainer {
 private:
-    int    trainerID;
+    int    trainerID; 
     string name;
     string specialization;   
     string contactNumber;
@@ -16,7 +16,7 @@ private:
     string availability;     
     int    experienceYears;
     bool   isActive;
-
+    string name;
 public:
     // Constructors / Destructor
     Trainer();
