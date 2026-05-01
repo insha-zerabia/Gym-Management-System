@@ -195,3 +195,11 @@ void PlanManagement::savePlans()
         << plans[i].getFee() << "\n";
     file.close();
 }
+
+double PlanManagement::getPlanFee(int planId) const
+{
+    for (int i = 0; i < count; i++)
+        if (plans[i].getID() == planId)
+            return plans[i].getFee();
+    return 0;
+}
