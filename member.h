@@ -2,9 +2,10 @@
 #define MEMBER_H
 
 #include <string>
+#include "user.h"
 using namespace std;
 
-class Member
+class Member : public User
 {
 private:
 	int age;
@@ -12,8 +13,11 @@ private:
 	string memberId;
 	string phoneNumber;
 	string membershipType;
-	string password;
+
 public:
+		void displayDashboard() const override;
+		string getRole() const override;
+
 	Member(); //default
 	Member(int age, string name, string memberId, string phoneNumber, string membershipType, string password);// parameterized
 	Member(const Member& other);      // Copy constructor
@@ -26,7 +30,6 @@ public:
 	void setMemberId(string);
 	void setPhoneNumber(string);
 	void setMembershipType(string);
-	void setPassword(string);
 
 
 	//Getters
@@ -35,7 +38,6 @@ public:
 	string getMemberId() const;
 	string getPhoneNumber() const;
 	string getMembershipType() const;
-	string getPassword() const;
 
 	// Display full record (admin view — shows password hash marker, not plain text)
 	void display() const;
