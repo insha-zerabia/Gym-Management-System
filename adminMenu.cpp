@@ -23,12 +23,16 @@ AdminMenu::AdminMenu(AttendanceManager* att, UserAccount* mem,
 
 AdminMenu::~AdminMenu() {}
 
-void AdminMenu::showMenu()                                                 //admin has rights to control all features 
+void AdminMenu::showMenu()
 {
     system("cls");
-    cout << "         ADMIN PANEL            \n\n\n\n\n";
-    cout << "  Total Members  : " << members->getMemberCount() << "\n";
-    cout << "  Total Trainers : " << trainers->getCount() << "\n";
+    cout << "         ADMIN PANEL            \n\n";
+
+    // Stats row
+    cout << "  Total Members    : " << members->getMemberCount() << "\n";
+    cout << "  Total Trainers   : " << trainers->getCount() << "\n";
+    cout << "  Pending Payments : " << payments->getPendingCount() << "\n";
+    cout << "\n";
     cout << " 1. Manage Members\n";
     cout << " 2. Manage Trainers\n";
     cout << " 3. Manage Plans & Payments\n";

@@ -48,14 +48,18 @@ double Payment::getAmount()   const { return amount; }
 string Payment::getDate()     const { return date; }
 bool   Payment::getStatus()   const { return isPaid; }
 
-PaymentManagement::PaymentManagement() : count(0) 
+PaymentManagement::PaymentManagement() : count(0), nextPaymentID(1)
 {
     loadPayments();
 }
 
 void PaymentManagement::addPayment(Payment p)
 {
-    if (count < 100) Payments[count++] = p;
+    if (count < 100)
+    {
+        p.setPaymentID(nextPaymentID++);
+        Payments[count++] = p;
+    }
     else cout << "Payment list is full." << endl;
 }
 
@@ -112,6 +116,7 @@ void PaymentManagement::loadPayments()
         Payments[count++] = p;
     }
     file.close();
+    nextPaymentID = count + 1;
 }
 
 void PaymentManagement::savePayments()
@@ -134,3 +139,12 @@ void Payment::recordPendingPayment(string mID, double amt, string d)
     static int id = 100;   
     paymentID = id++;
 }
+int PaymentManagement::getPendingCount() const
+{
+    int n = 0;
+    for (int i = 0; i < count; i++)
+        if (!Payments[i].getStatus()) n++;
+    return n;
+}
+
+void Payment::setPaymentID(int id) { paymentID = id; }
