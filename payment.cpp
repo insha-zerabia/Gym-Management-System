@@ -4,7 +4,6 @@
 #include <ctime>
 using namespace std;
 
-//Helper to get current date
 static string getTodayDate()
 {
     time_t now = time(nullptr);
@@ -16,6 +15,23 @@ static string getTodayDate()
 }
 
 Payment::Payment() : paymentID(0), memberID(""), date(""), amount(0), isPaid(false) {}
+
+Payment::Payment(const Payment& o)
+    : paymentID(o.paymentID), memberID(o.memberID), date(o.date),
+    amount(o.amount), isPaid(o.isPaid) {
+}
+
+Payment& Payment::operator=(const Payment& o)
+{
+    if (this != &o) {
+        paymentID = o.paymentID;
+        memberID = o.memberID;
+        date = o.date;
+        amount = o.amount;
+        isPaid = o.isPaid;
+    }
+    return *this;
+}
 
 void Payment::recordOfPayment(string mID, double amt, string d)
 {
@@ -48,19 +64,25 @@ void PaymentManagement::showPaymentHistory(string memberID)
         if (Payments[i].getMemberID() == memberID)
         {
             cout << "Date: " << Payments[i].getDate()
-                << "  Amount: " << Payments[i].getAmount()
-                << "  Status: " << (Payments[i].getStatus() ? "Paid" : "Unpaid") << endl;
+                << "  Amount: Rs." << Payments[i].getAmount()
+                << "  Status: " << (Payments[i].getStatus() ? "Paid" : "Unpaid")
+                << endl;
             found = true;
         }
     }
-    if (!found) cout << "No payment records found for member " << memberID << "." << endl;
+    if (!found) cout << "No payment records found for member " << memberID << ".\n";
 }
 
 void PaymentManagement::checkUnpaidMembers()
 {
+    bool found = false;
     for (int i = 0; i < count; i++)
         if (!Payments[i].getStatus())
+        {
             cout << "Unpaid Member ID: " << Payments[i].getMemberID() << endl;
+            found = true;
+        }
+    if (!found) cout << "No unpaid members.\n";
 }
 
 void PaymentManagement::createReport()
@@ -69,7 +91,7 @@ void PaymentManagement::createReport()
     for (int i = 0; i < count; i++)
         if (Payments[i].getStatus())
             total += Payments[i].getAmount();
-    cout << "Total Collected: " << total << endl;
+    cout << "Total Collected: Rs." << total << endl;
 }
 
 void PaymentManagement::loadPayments()
@@ -80,11 +102,10 @@ void PaymentManagement::loadPayments()
     string mID, date;
     double amount;
     bool   status;
-    while (file >> mID >> amount >> status >> date)
+    while (file >> mID >> amount >> status >> date && count < 100)
     {
         Payment p;
         p.recordOfPayment(mID, amount, date);
-        if (!status) { Payment empty; p = empty; }             //mark unpaid if needed
         Payments[count++] = p;
     }
     file.close();
@@ -97,6 +118,6 @@ void PaymentManagement::savePayments()
         file << Payments[i].getMemberID() << " "
         << Payments[i].getAmount() << " "
         << Payments[i].getStatus() << " "
-        << Payments[i].getDate() << endl;
+        << Payments[i].getDate() << "\n";
     file.close();
 }
