@@ -32,6 +32,7 @@ void AdminMenu::showMenu()
     cout << "  Total Members    : " << members->getMemberCount() << "\n";
     cout << "  Total Trainers   : " << trainers->getCount() << "\n";
     cout << "  Pending Payments : " << payments->getPendingCount() << "\n";
+    cout << "  Expiring Plans   : " << plans->getExpiringCount() << "\n";
     cout << "\n";
     cout << " 1. Manage Members\n";
     cout << " 2. Manage Trainers\n";

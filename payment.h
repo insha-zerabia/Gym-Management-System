@@ -17,6 +17,10 @@ public:
     Payment& operator=(const Payment& other);
 
     void setPaymentID(int id);
+    void setIsPaid(bool status);
+    void setMemberID(string id);
+    void setAmount(double amt);
+    void setDate(string d);
     void   recordOfPayment(string memberID, double amount, string date);
     string getMemberID() const;
     double getAmount()   const;

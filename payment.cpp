@@ -39,8 +39,7 @@ void Payment::recordOfPayment(string mID, double amt, string d)
     this->amount = amt;
     this->isPaid = true;
     this->date = d.empty() ? getTodayDate() : d;
-    static int id = 1;
-    paymentID = id++;
+    this->paymentID = 0;   
 }
 
 string Payment::getMemberID() const { return memberID; }
@@ -112,11 +111,14 @@ void PaymentManagement::loadPayments()
     while (file >> mID >> amount >> status >> date && count < 100)
     {
         Payment p;
-        p.recordOfPayment(mID, amount, date);
+        p.setMemberID(mID);
+        p.setAmount(amount);
+        p.setIsPaid(status);
+        p.setDate(date);
+        p.setPaymentID(nextPaymentID++);
         Payments[count++] = p;
     }
     file.close();
-    nextPaymentID = count + 1;
 }
 
 void PaymentManagement::savePayments()
@@ -134,11 +136,11 @@ void Payment::recordPendingPayment(string mID, double amt, string d)
 {
     this->memberID = mID;
     this->amount = amt;
-    this->isPaid = false;  
+    this->isPaid = false;
     this->date = d.empty() ? getTodayDate() : d;
-    static int id = 100;   
-    paymentID = id++;
+    this->paymentID = 0;  
 }
+
 int PaymentManagement::getPendingCount() const
 {
     int n = 0;
@@ -148,3 +150,7 @@ int PaymentManagement::getPendingCount() const
 }
 
 void Payment::setPaymentID(int id) { paymentID = id; }
+void Payment::setIsPaid(bool status) { isPaid = status; }
+void Payment::setMemberID(string id) { memberID = id; }
+void Payment::setAmount(double amt) { amount = amt; }
+void Payment::setDate(string d) { date = d; }
