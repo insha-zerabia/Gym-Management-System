@@ -46,6 +46,7 @@ public:
     void deletePlan(int ID);
     void loadPlans();
     void savePlans();
+    double getPlanFee(int planId) const;
 
     void assignPlanToMember(string memberId, int planId);
     void viewMemberPlan(string memberId)  const;
