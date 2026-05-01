@@ -376,3 +376,12 @@ FodyWeavers.xsd
 # MSVC local history and user settings
 .localhistory/
 *.sln.targets
+
+# Qt generated files
+*.pro.user
+build/
+*.o
+*.moc
+moc_*.cpp
+ui_*.h
+Makefile
