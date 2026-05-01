@@ -367,14 +367,9 @@ void AdminMenu::managePlansMenu()
         }
         else if (choice == 6)
         {
-            string memberId; double amount;
+            string memberId;
             cout << " Member ID : "; cin >> memberId;
-            cout << " Amount    : "; cin >> amount;
-            Payment p;
-            p.recordOfPayment(memberId, amount, "");
-            payments->addPayment(p);
-            payments->savePayments();
-            cout << " Payment recorded.\n";
+            payments->markAsPaid(memberId);
             system("pause");
         }
         else if (choice == 7)
