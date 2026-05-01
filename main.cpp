@@ -2,9 +2,10 @@
 #include <iostream>
 using namespace std;
 
+GymSystem gym;
+
 int main()
 {
-    GymSystem gym;
     gym.run();
     return 0;
 }

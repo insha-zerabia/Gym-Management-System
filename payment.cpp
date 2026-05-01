@@ -39,8 +39,7 @@ void Payment::recordOfPayment(string mID, double amt, string d)
     this->amount = amt;
     this->isPaid = true;
     this->date = d.empty() ? getTodayDate() : d;
-    static int id = 1;
-    paymentID = id++;
+    this->paymentID = 0;   
 }
 
 string Payment::getMemberID() const { return memberID; }
@@ -48,14 +47,18 @@ double Payment::getAmount()   const { return amount; }
 string Payment::getDate()     const { return date; }
 bool   Payment::getStatus()   const { return isPaid; }
 
-PaymentManagement::PaymentManagement() : count(0) 
+PaymentManagement::PaymentManagement() : count(0), nextPaymentID(1)
 {
     loadPayments();
 }
 
 void PaymentManagement::addPayment(Payment p)
 {
-    if (count < 100) Payments[count++] = p;
+    if (count < 100)
+    {
+        p.setPaymentID(nextPaymentID++);
+        Payments[count++] = p;
+    }
     else cout << "Payment list is full." << endl;
 }
 
@@ -80,12 +83,30 @@ void PaymentManagement::checkUnpaidMembers()
 {
     bool found = false;
     for (int i = 0; i < count; i++)
+    {
         if (!Payments[i].getStatus())
         {
-            cout << "Unpaid Member ID: " << Payments[i].getMemberID() << endl;
-            found = true;
+            // check if we already printed this member
+            bool alreadyShown = false;
+            for (int j = 0; j < i; j++)
+            {
+                if (Payments[j].getMemberID() == Payments[i].getMemberID()
+                    && !Payments[j].getStatus())
+                {
+                    alreadyShown = true;
+                    break;
+                }
+            }
+            if (!alreadyShown)
+            {
+                cout << "Unpaid Member ID: " << Payments[i].getMemberID()
+                    << "  Amount Due: Rs." << Payments[i].getAmount() << "\n";
+                found = true;
+            }
         }
-    if (!found) cout << "No unpaid members.\n";
+    }
+    if (!found)
+        cout << "No unpaid members.\n";
 }
 
 void PaymentManagement::createReport()
@@ -108,7 +129,11 @@ void PaymentManagement::loadPayments()
     while (file >> mID >> amount >> status >> date && count < 100)
     {
         Payment p;
-        p.recordOfPayment(mID, amount, date);
+        p.setMemberID(mID);
+        p.setAmount(amount);
+        p.setIsPaid(status);
+        p.setDate(date);
+        p.setPaymentID(nextPaymentID++);
         Payments[count++] = p;
     }
     file.close();
@@ -129,8 +154,41 @@ void Payment::recordPendingPayment(string mID, double amt, string d)
 {
     this->memberID = mID;
     this->amount = amt;
-    this->isPaid = false;  
+    this->isPaid = false;
     this->date = d.empty() ? getTodayDate() : d;
-    static int id = 100;   
-    paymentID = id++;
+    this->paymentID = 0;  
+}
+
+int PaymentManagement::getPendingCount() const
+{
+    int n = 0;
+    for (int i = 0; i < count; i++)
+        if (!Payments[i].getStatus()) n++;
+    return n;
+}
+
+void Payment::setPaymentID(int id) { paymentID = id; }
+void Payment::setIsPaid(bool status) { isPaid = status; }
+void Payment::setMemberID(string id) { memberID = id; }
+void Payment::setAmount(double amt) { amount = amt; }
+void Payment::setDate(string d) { date = d; }
+
+void PaymentManagement::markAsPaid(string memberID)
+{
+    bool found = false;
+    for (int i = 0; i < count; i++)
+    {
+        if (Payments[i].getMemberID() == memberID && !Payments[i].getStatus())
+        {
+            Payments[i].setIsPaid(true);
+            cout << "Payment of Rs." << Payments[i].getAmount()
+                << " marked as paid for member " << memberID << ".\n";
+            found = true;
+            break;   // mark only the oldest unpaid one first
+        }
+    }
+    if (!found)
+        cout << "No unpaid payment found for member " << memberID << ".\n";
+
+    savePayments();
 }

@@ -1,0 +1,3 @@
+2 Standard 30 10000
+1 Basic 15 7000
+3 Premium 60 18000

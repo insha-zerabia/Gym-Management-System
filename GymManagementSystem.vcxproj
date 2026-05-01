@@ -135,6 +135,7 @@
     <ClCompile Include="payment.cpp" />
     <ClCompile Include="plan.cpp" />
     <ClCompile Include="trainer.cpp" />
+    <ClCompile Include="user.cpp" />
     <ClCompile Include="userAccount.cpp" />
     <ClCompile Include="userMenu.cpp" />
     <ClCompile Include="workout.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="payment.h" />
     <ClInclude Include="plan.h" />
     <ClInclude Include="trainer.h" />
+    <ClInclude Include="user.h" />
     <ClInclude Include="userAccount.h" />
     <ClInclude Include="userMenu.h" />
     <ClInclude Include="workout.h" />

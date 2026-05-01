@@ -22,6 +22,7 @@ private:
     
 
 public:
+    void showMemberOwnProfile(string id) const;
     void saveToFile() const;
     // Constructor / Destructor
     UserAccount(string filename = "members.txt");
@@ -36,9 +37,11 @@ public:
 
     //User-side operations 
     // Returns pointer to the logged-in Member, or nullptr on failure
+
     Member* login(string id, string password) const;
 
     // Show the logged-in member's own profile
+
     void showOwnProfile(const Member* loggedIn) const;
 
     int  getMemberCount() const 

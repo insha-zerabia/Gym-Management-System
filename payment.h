@@ -16,6 +16,11 @@ public:
     Payment(const Payment& other);
     Payment& operator=(const Payment& other);
 
+    void setPaymentID(int id);
+    void setIsPaid(bool status);
+    void setMemberID(string id);
+    void setAmount(double amt);
+    void setDate(string d);
     void   recordOfPayment(string memberID, double amount, string date);
     string getMemberID() const;
     double getAmount()   const;
@@ -28,6 +33,7 @@ class PaymentManagement {
 private:
     Payment Payments[100];
     int count;
+    int nextPaymentID;
 public:
     PaymentManagement();
     void addPayment(Payment p);
@@ -36,5 +42,7 @@ public:
     void createReport();
     void loadPayments();
     void savePayments();
+    int getPendingCount() const;
+    void markAsPaid(string memberID);
 };
 #endif
