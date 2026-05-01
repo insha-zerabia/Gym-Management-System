@@ -22,6 +22,7 @@ private:
     
 
 public:
+    void showMemberOwnProfile(string id) const;
     void saveToFile() const;
     // Constructor / Destructor
     UserAccount(string filename = "members.txt");

@@ -362,3 +362,14 @@ void UserAccount::showOwnProfile(const Member* loggedIn) const
     }
     loggedIn->displayOwnProfile();
 }
+
+void UserAccount::showMemberOwnProfile(string id) const
+{
+    int idx = findIndexById(id);
+    if (idx == -1)
+    {
+        cout << "Member not found.\n";
+        return;
+    }
+    members[idx]->displayOwnProfile();
+}

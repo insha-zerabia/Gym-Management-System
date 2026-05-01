@@ -76,7 +76,7 @@ void UserMenu::viewMyProfile()
 {
     system("cls");
     cout << "           MY PROFILE           \n";
-    members->searchMember(loggedInMemberId);                     //calls Aiman's searchMember
+    members->showMemberOwnProfile(loggedInMemberId);  //uses displayOwnProfile,no password shown
     system("pause");
 }
 
