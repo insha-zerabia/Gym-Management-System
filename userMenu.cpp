@@ -76,7 +76,7 @@ void UserMenu::viewMyProfile()
 {
     system("cls");
     cout << "           MY PROFILE           \n";
-    members->searchMember(loggedInMemberId);                     //calls Aiman's searchMember
+    members->showMemberOwnProfile(loggedInMemberId);  //uses displayOwnProfile,no password shown
     system("pause");
 }
 
@@ -108,9 +108,7 @@ void UserMenu::viewMyPayments()
 {
     system("cls");
     cout << "        MY PAYMENT HISTORY      \n";
-    // payments->showPaymentHistory(loggedInMemberId);
-    // Uncomment the line above when Zemal finishes payment.cpp
-    cout << " Payment history module coming soon.\n";
+    payments->showPaymentHistory(loggedInMemberId);
     system("pause");
 }
 
