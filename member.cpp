@@ -99,7 +99,8 @@ string Member::getMembershipType() const
 }
 
 
-// Display (admin view, all fields, password hidden)
+// Display 
+// (admin view, all fields, password hidden)
 void Member::display() const
 {
     cout << "---------------------------------------" << endl;
@@ -118,7 +119,8 @@ void Member::display() const
 }
 
 
-// displayOwnProfile (user/member view, no password)
+// displayOwnProfile
+// (user/member view, no password)
 void Member::displayOwnProfile() const
 {
     cout << "\n===== Your Profile =====" << endl;
@@ -130,7 +132,7 @@ void Member::displayOwnProfile() const
     cout << "========================" << endl;
 }
 
-// update interactive field-by-field update
+// update
 void Member::update()
 {
     int choice;

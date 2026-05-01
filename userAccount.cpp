@@ -55,13 +55,13 @@ bool extractField(const string& line, int& startPos, string& field)
     return true;
 }
 
-// Constructor / Destructor
+// Constructor
 UserAccount::UserAccount(string filename) : members(nullptr), memberCount(0), capacity(4), dataFile(filename) 
 {
     members = new Member * [capacity];
     loadFromFile();
 }
-
+// Destructor
 UserAccount::~UserAccount()
 {
     saveToFile();
@@ -154,7 +154,8 @@ void UserAccount::loadFromFile()
     fin.close();
 }
 
-// saveToFile  — writes every member back to members.txt
+// saveToFile  
+// — writes every member back to members.txt
 void UserAccount::saveToFile() const
 {
     ofstream fout(dataFile);
@@ -178,7 +179,8 @@ void UserAccount::saveToFile() const
 }
 
 
-// addMember  — interactive prompt to add a new member
+// addMember  
+// — interactive prompt to add a new member
 void UserAccount::addMember()
 {
     string id, name, phone, type, pwd;
