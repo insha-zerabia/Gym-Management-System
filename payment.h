@@ -21,6 +21,7 @@ public:
     double getAmount()   const;
     string getDate()     const;
     bool   getStatus()   const;
+    void recordPendingPayment(string memberID, double amount, string date);
 };
 
 class PaymentManagement {
