@@ -37,10 +37,12 @@ public:
 	string getMembershipType() const;
 	string getPassword() const;
 
-	// Display full record (admin view — shows password hash marker, not plain text)
+	// Display full record
+	// (admin view — shows password hash marker, not plain text)
 	void display() const;
 
-	// Display own profile (user/member view — no password shown)
+	// Display own profile
+	// (user/member view — no password shown)
 	void displayOwnProfile() const;
 
 	// Let the member interactively update their own fields
