@@ -48,7 +48,10 @@ double Payment::getAmount()   const { return amount; }
 string Payment::getDate()     const { return date; }
 bool   Payment::getStatus()   const { return isPaid; }
 
-PaymentManagement::PaymentManagement() : count(0) {}
+PaymentManagement::PaymentManagement() : count(0) 
+{
+    loadPayments();
+}
 
 void PaymentManagement::addPayment(Payment p)
 {
@@ -120,4 +123,14 @@ void PaymentManagement::savePayments()
         << Payments[i].getStatus() << " "
         << Payments[i].getDate() << "\n";
     file.close();
+}
+
+void Payment::recordPendingPayment(string mID, double amt, string d)
+{
+    this->memberID = mID;
+    this->amount = amt;
+    this->isPaid = false;  
+    this->date = d.empty() ? getTodayDate() : d;
+    static int id = 100;   
+    paymentID = id++;
 }
