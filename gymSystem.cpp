@@ -33,8 +33,9 @@ void GymSystem::saveAllData()
     trainers.saveAssignments();
     workouts.saveToFile();
     workouts.saveAssignments();
-    // plans.savePlans();        // uncomment when Zemal implements plan.cpp
-    // payments.savePayments();  // uncomment when Zemal implements payment.cpp
+    plans.savePlans();
+    plans.saveAssignments();
+    payments.savePayments();
     cout << "All data saved successfully.\n";
 }
 

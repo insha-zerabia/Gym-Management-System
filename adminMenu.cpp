@@ -293,6 +293,22 @@ void AdminMenu::managePlansMenu()
             cout << " Member ID: "; cin >> memberId;
             cout << " Plan ID  : "; cin >> planId;
             plans->assignPlanToMember(memberId, planId);
+
+            // Auto-create a pending payment for the assigned plan
+            int pid = plans->getMemberPlanId(memberId);
+            if (pid != -1)
+            {
+                // find the plan fee — you need a getPlanFee helper (see BUG 5 Step 4)
+                double fee = plans->getPlanFee(pid);
+                if (fee > 0)
+                {
+                    Payment pending;
+                    pending.recordPendingPayment(memberId, fee, "");
+                    payments->addPayment(pending);
+                    payments->savePayments();
+                    cout << " Pending payment of Rs." << fee << " created.\n";
+                }
+            }
             system("pause");
         }
         else if (choice == 6)
