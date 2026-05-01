@@ -22,7 +22,7 @@ Trainer::Trainer(const Trainer& o)
 }
 
 Trainer& Trainer::operator=(const Trainer& o) {
-    if (this != &o) {
+    if (this != &o) { 
         trainerID = o.trainerID;
         name = o.name;
         specialization = o.specialization;
@@ -32,7 +32,7 @@ Trainer& Trainer::operator=(const Trainer& o) {
         experienceYears = o.experienceYears;
         isActive = o.isActive;
     }
-    return *this;
+    return *this; //returns current 
 }
 Trainer::~Trainer() {}
 
