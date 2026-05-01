@@ -84,9 +84,7 @@ void UserMenu::viewMyPlan()
 {
     system("cls");
     cout << "       MY MEMBERSHIP PLAN       \n";
-    // plans->viewMemberPlan(loggedInMemberId);
-    // Uncomment the line above when Zemal finishes plan.cpp
-    cout << " Membership plan module coming soon.\n";
+    plans->viewMemberPlan(loggedInMemberId);
     system("pause");
 }
 

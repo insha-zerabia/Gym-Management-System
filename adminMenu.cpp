@@ -237,10 +237,115 @@ void AdminMenu::manageTrainersMenu()
 //PLANS & PAYMENTS  (Zemal's module)
 void AdminMenu::managePlansMenu()
 {
-    system("cls");
-    cout << " Plans & Payments module is pending (Zemal's module).\n";
-    cout << " This will be connected once plan.cpp and payment.cpp are complete.\n";
-    system("pause");
+    int choice;
+    do {
+        system("cls");
+        cout << "   PLANS & PAYMENTS MANAGEMENT  \n";
+        cout << " --- Membership Plans ---\n";
+        cout << " 1. Add Plan\n";
+        cout << " 2. View All Plans\n";
+        cout << " 3. Update Plan\n";
+        cout << " 4. Delete Plan\n";
+        cout << " 5. Assign Plan to Member\n";
+        cout << " --- Payments ---\n";
+        cout << " 6. Record Payment for Member\n";
+        cout << " 7. View Member Payment History\n";
+        cout << " 8. Check Unpaid Members\n";
+        cout << " 9. Generate Payment Report\n";
+        cout << " 0. Back\n";
+        cout << " Choice: ";
+        cin >> choice;
+
+        if (choice == 1)
+        {
+            int id, period; string name; double fee;
+            cout << " Plan ID   : "; cin >> id;
+            cout << " Name      : "; cin >> name;
+            cout << " Period (days): "; cin >> period;
+            cout << " Fee       : "; cin >> fee;
+            plans->addPlan(Plan(id, name, period, fee));
+            plans->savePlans();
+            cout << " Plan added.\n";
+            system("pause");
+        }
+        else if (choice == 2)
+        {
+            plans->viewPlans();
+            system("pause");
+        }
+        else if (choice == 3)
+        {
+            int id; cout << " Plan ID to update: "; cin >> id;
+            plans->updatePlan(id);
+            plans->savePlans();
+            system("pause");
+        }
+        else if (choice == 4)
+        {
+            int id; cout << " Plan ID to delete: "; cin >> id;
+            plans->deletePlan(id);
+            plans->savePlans();
+            system("pause");
+        }
+        else if (choice == 5)
+        {
+            string memberId; int planId;
+            cout << " Member ID: "; cin >> memberId;
+            cout << " Plan ID  : "; cin >> planId;
+            plans->assignPlanToMember(memberId, planId);
+
+            // Auto-create a pending payment for the assigned plan
+            int pid = plans->getMemberPlanId(memberId);
+            if (pid != -1)
+            {
+                // find the plan fee — you need a getPlanFee helper (see BUG 5 Step 4)
+                double fee = plans->getPlanFee(pid);
+                if (fee > 0)
+                {
+                    Payment pending;
+                    pending.recordPendingPayment(memberId, fee, "");
+                    payments->addPayment(pending);
+                    payments->savePayments();
+                    cout << " Pending payment of Rs." << fee << " created.\n";
+                }
+            }
+            system("pause");
+        }
+        else if (choice == 6)
+        {
+            string memberId; double amount;
+            cout << " Member ID : "; cin >> memberId;
+            cout << " Amount    : "; cin >> amount;
+            Payment p;
+            p.recordOfPayment(memberId, amount, "");
+            payments->addPayment(p);
+            payments->savePayments();
+            cout << " Payment recorded.\n";
+            system("pause");
+        }
+        else if (choice == 7)
+        {
+            string memberId;
+            cout << " Member ID: "; cin >> memberId;
+            payments->showPaymentHistory(memberId);
+            system("pause");
+        }
+        else if (choice == 8)
+        {
+            payments->checkUnpaidMembers();
+            system("pause");
+        }
+        else if (choice == 9)
+        {
+            payments->createReport();
+            system("pause");
+        }
+        else if (choice != 0)
+        {
+            cout << " Invalid choice.\n";
+            system("pause");
+        }
+    } while (choice != 0);
 }
 
 //WORKOUT MANAGEMENT
