@@ -36,20 +36,24 @@ private:
 
     string memberPlanIds[200];
     int    memberPlanNums[200];
+    string memberPlanDates[200];   
     int    assignCount;
 
 public:
     PlanManagement();
+    int getExpiringCount() const;
+    int  getMemberPlanId(string memberId) const;
+
     void addPlan(Plan p);
     void viewPlans()        const;
     void updatePlan(int ID);
     void deletePlan(int ID);
     void loadPlans();
     void savePlans();
+    double getPlanFee(int planId) const;
 
     void assignPlanToMember(string memberId, int planId);
     void viewMemberPlan(string memberId)  const;
-    int  getMemberPlanId(string memberId) const;
 
     void saveAssignments() const;
     void loadAssignments();

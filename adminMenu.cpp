@@ -23,12 +23,17 @@ AdminMenu::AdminMenu(AttendanceManager* att, UserAccount* mem,
 
 AdminMenu::~AdminMenu() {}
 
-void AdminMenu::showMenu()                                                 //admin has rights to control all features 
+void AdminMenu::showMenu()
 {
     system("cls");
-    cout << "         ADMIN PANEL            \n\n\n\n\n";
-    cout << "  Total Members  : " << members->getMemberCount() << "\n";
-    cout << "  Total Trainers : " << trainers->getCount() << "\n";
+    cout << "         ADMIN PANEL            \n\n";
+
+    // Stats row
+    cout << "  Total Members    : " << members->getMemberCount() << "\n";
+    cout << "  Total Trainers   : " << trainers->getCount() << "\n";
+    cout << "  Pending Payments : " << payments->getPendingCount() << "\n";
+    cout << "  Expiring Plans   : " << plans->getExpiringCount() << "\n";
+    cout << "\n";
     cout << " 1. Manage Members\n";
     cout << " 2. Manage Trainers\n";
     cout << " 3. Manage Plans & Payments\n";
@@ -165,6 +170,14 @@ void AdminMenu::manageTrainersMenu()
         {
             int id;
             cout << " Enter Trainer ID: "; cin >> id;
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << " Please enter numbers only.\n";
+                system("pause");
+                continue;   // go back to the menu instead of crashing
+            }
             trainers->searchTrainerByID(id);
             system("pause");
         }
@@ -179,6 +192,14 @@ void AdminMenu::manageTrainersMenu()
         {
             int id;
             cout << " Enter Trainer ID to update: "; cin >> id;
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << " Please enter numbers only.\n";
+                system("pause");
+                continue;                                           //go back to the menu instead of crashing
+            }
             trainers->updateTrainer(id);
             system("pause");
         }
@@ -186,6 +207,14 @@ void AdminMenu::manageTrainersMenu()
         {
             int id;
             cout << " Enter Trainer ID to deactivate: "; cin >> id;
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << " Please enter numbers only.\n";
+                system("pause");
+                continue;   
+            }
             trainers->deactivateTrainer(id);
             system("pause");
         }
@@ -193,6 +222,14 @@ void AdminMenu::manageTrainersMenu()
         {
             int id;
             cout << " Enter Trainer ID to delete: "; cin >> id;
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << " Please enter numbers only.\n";
+                system("pause");
+                continue;  
+            }
             trainers->deleteTrainer(id);
             system("pause");
         }
@@ -200,7 +237,16 @@ void AdminMenu::manageTrainersMenu()
         {
             string memberId; int tid;
             cout << " Enter Member ID   : "; cin >> memberId;
-            cout << " Enter Trainer ID  : "; cin >> tid;
+            cout << " Enter Trainer ID (number only, e.g. 1): ";
+            cin >> tid;
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << " Invalid ID. Please enter a number.\n";
+                system("pause");
+                break;
+            }
             trainers->assignTrainerToMember(memberId, tid);
             system("pause");
         }
@@ -209,6 +255,14 @@ void AdminMenu::manageTrainersMenu()
             string memberId; int tid;
             cout << " Enter Member ID       : "; cin >> memberId;
             cout << " Enter New Trainer ID  : "; cin >> tid;
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << " Invalid ID. Please enter a number.\n";
+                system("pause");
+                break;
+            }
             trainers->changeTrainerForMember(memberId, tid);
             system("pause");
         }
@@ -313,14 +367,9 @@ void AdminMenu::managePlansMenu()
         }
         else if (choice == 6)
         {
-            string memberId; double amount;
+            string memberId;
             cout << " Member ID : "; cin >> memberId;
-            cout << " Amount    : "; cin >> amount;
-            Payment p;
-            p.recordOfPayment(memberId, amount, "");
-            payments->addPayment(p);
-            payments->savePayments();
-            cout << " Payment recorded.\n";
+            payments->markAsPaid(memberId);
             system("pause");
         }
         else if (choice == 7)

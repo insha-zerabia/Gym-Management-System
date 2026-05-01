@@ -39,6 +39,17 @@ void GymSystem::saveAllData()
     cout << "All data saved successfully.\n";
 }
 
+void GymSystem::showStartMenu()
+{
+    system("cls");
+    cout << "    GYM MANAGEMENT SYSTEM       \n";
+    cout << " 1. Login as Admin              \n";
+    cout << " 2. Login as Member             \n";
+    cout << " 0. Exit                        \n";
+    cout << " Choice: ";
+}
+
+
 void GymSystem::run()
 {
     loadAllData();
@@ -91,15 +102,6 @@ void GymSystem::run()
     saveAllData();
 }
 
-void GymSystem::showStartMenu()
-{
-    system("cls");
-    cout << "    GYM MANAGEMENT SYSTEM       \n";
-    cout << " 1. Login as Admin              \n";
-    cout << " 2. Login as Member             \n";
-    cout << " 0. Exit                        \n";
-    cout << " Choice: ";
-}
 
 int GymSystem::adminLogin()
 {
