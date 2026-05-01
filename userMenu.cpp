@@ -108,9 +108,7 @@ void UserMenu::viewMyPayments()
 {
     system("cls");
     cout << "        MY PAYMENT HISTORY      \n";
-    // payments->showPaymentHistory(loggedInMemberId);
-    // Uncomment the line above when Zemal finishes payment.cpp
-    cout << " Payment history module coming soon.\n";
+    payments->showPaymentHistory(loggedInMemberId);
     system("pause");
 }
 
