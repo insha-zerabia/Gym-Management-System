@@ -12,7 +12,7 @@ private:
     int    reps; //repititions
     string duration; //total time
     string notes; 
-    int time; //added time
+   
 public:
     Exercise();
     Exercise(string name, int sets, int reps, string duration, string notes);
