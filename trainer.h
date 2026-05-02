@@ -8,15 +8,15 @@ using namespace std;
 // stores data of trainers
 class Trainer {
 private:
-    int    trainerID; 
+    int    trainerID;
     string name;
-    string specialization;   
+    string specialization;
     string contactNumber;
     string email;
-    string availability;     
+    string availability;
     int    experienceYears;
     bool   isActive; //status
- 
+
 public:
     // Constructors / Destructor
     Trainer();
@@ -51,26 +51,37 @@ public:
 
     // Display / File I/O
     void display()                     const;
-    void displayCompact()              const;   // one-line summary for lists
+    void displayCompact()              const;   // oneline summary for lists
     void saveToFile(ofstream& ofs)     const;
     void loadFromFile(ifstream& ifs);
 };
 
 
-//  MemberTrainerAssignment  links one member to one trainer
-
-struct MemberTrainerAssignment {
+// MemberTrainerAssignment links one member to one trainer
+class MemberTrainerAssignment {
+private:
     string memberId;
     int    trainerID;
     string assignedDate;
 
+public:
     MemberTrainerAssignment();
     MemberTrainerAssignment(string mid, int tid, string date);
+
+    // Getters
+    string getMemberId()     const;
+    int    getTrainerID()    const;
+    string getAssignedDate() const;
+
+    // Setters
+    void setTrainerID(int tid);
+    void setAssignedDate(string date);
+
     void saveToFile(ofstream& ofs)  const;
     void loadFromFile(ifstream& ifs);
 };
-//  TrainerManager manages all trainers + assignments
 
+// TrainerManager manages all trainers + assignments
 class TrainerManager {
 private:
     Trainer                  trainers[100];
@@ -90,7 +101,7 @@ public:
     void searchTrainerByID(int id) const;
     void searchTrainerByName(string keyword) const;
     void updateTrainer(int id);
-    void deactivateTrainer(int id);   // soft delete – keeps history
+    void deactivateTrainer(int id);   // keeps history
     void deleteTrainer(int id);
 
     // Assignment which assign/change trainer for a member
@@ -101,7 +112,6 @@ public:
     void viewTrainerMembers(int trainerID)      const;   // who is assigned to this trainer
     int  getAssignedTrainerID(string memberId)  const;
 
-    
     Trainer* findByID(int id);
     bool     trainerExists(int id) const;
 
@@ -114,4 +124,4 @@ public:
     int getCount() const { return trainerCount; }
 };
 
-#endif // TRAINER_H
+#endif 
