@@ -15,10 +15,9 @@ private:
     string email;
     string availability;
     int    experienceYears;
-    bool   isActive; //status
+    bool   isActive;
 
 public:
-    // Constructors / Destructor
     Trainer();
     Trainer(int id, string name, string spec, string contact,
         string email, string availability, int expYears);
@@ -27,14 +26,14 @@ public:
     ~Trainer();
 
     // Getters
-    int    getTrainerID()      const;
-    string getName()           const;
-    string getSpecialization() const;
-    string getContactNumber()  const;
-    string getEmail()          const;
-    string getAvailability()   const;
-    int    getExperienceYears()const;
-    bool   getIsActive()       const;
+    int    getTrainerID()       const;
+    string getName()            const;
+    string getSpecialization()  const;
+    string getContactNumber()   const;
+    string getEmail()           const;
+    string getAvailability()    const;
+    int    getExperienceYears() const;
+    bool   getIsActive()        const;
 
     // Setters
     void setTrainerID(int v);
@@ -46,16 +45,13 @@ public:
     void setExperienceYears(int v);
     void setIsActive(bool v);
 
-    // Operator overload
     bool operator==(const Trainer& rhs) const;
 
-    // Display / File I/O
-    void display()                     const;
-    void displayCompact()              const;   // oneline summary for lists
-    void saveToFile(ofstream& ofs)     const;
+    void display()                  const;
+    void displayCompact()           const;
+    void saveToFile(ofstream& ofs)  const;
     void loadFromFile(ifstream& ifs);
 };
-
 
 // MemberTrainerAssignment links one member to one trainer
 class MemberTrainerAssignment {
@@ -84,10 +80,10 @@ public:
 // TrainerManager manages all trainers + assignments
 class TrainerManager {
 private:
-    Trainer                  trainers[100];
-    int                      trainerCount;
-    MemberTrainerAssignment  assignments[200];
-    int                      assignCount;
+    Trainer                 trainers[100];
+    int                     trainerCount;
+    MemberTrainerAssignment assignments[200];
+    int                     assignCount;
 
     string currentDate() const;
 
@@ -96,32 +92,32 @@ public:
 
     // Trainer CRUD
     void addTrainer();
-    void viewAllTrainers()        const;
-    void viewActiveTrainers()     const;
-    void searchTrainerByID(int id) const;
+    void viewAllTrainers()           const;
+    void viewActiveTrainers()        const;
+    void searchTrainerByID(int id)   const;
     void searchTrainerByName(string keyword) const;
     void updateTrainer(int id);
-    void deactivateTrainer(int id);   // keeps history
+    void deactivateTrainer(int id);
     void deleteTrainer(int id);
 
-    // Assignment which assign/change trainer for a member
+    // Assignments
     void assignTrainerToMember(string memberId, int trainerID);
     void changeTrainerForMember(string memberId, int newTrainerID);
     void removeTrainerFromMember(string memberId);
-    void viewMemberTrainer(string memberId)     const;
-    void viewTrainerMembers(int trainerID)      const;   // who is assigned to this trainer
-    int  getAssignedTrainerID(string memberId)  const;
+    void viewMemberTrainer(string memberId)  const;
+    void viewTrainerMembers(int trainerID)   const;
+    int  getAssignedTrainerID(string memberId) const;
 
     Trainer* findByID(int id);
     bool     trainerExists(int id) const;
 
     // File I/O
-    void saveToFile()   const;
+    void saveToFile()      const;
     void loadFromFile();
-    void saveAssignments()   const;
+    void saveAssignments() const;
     void loadAssignments();
 
     int getCount() const { return trainerCount; }
 };
 
-#endif 
+#endif // TRAINER_H
