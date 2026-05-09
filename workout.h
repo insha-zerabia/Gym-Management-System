@@ -1,3 +1,4 @@
+
 #ifndef WORKOUT_H
 #define WORKOUT_H
 
@@ -5,26 +6,29 @@
 #include <fstream>
 using namespace std;
 
+// represents a single exercise in a workout day
 class Exercise {
 private:
-    string name; //name of workout exericse
-    int    sets; //rounds 
-    int    reps; //repititions
-    string duration; //total time
-    string notes; 
-   
+    string name;      // name of workout exercise
+    int    sets;      // rounds
+    int    reps;      // repetitions
+    string duration;  // total time
+    string notes;
+
 public:
     Exercise();
     Exercise(string name, int sets, int reps, string duration, string notes);
     Exercise(const Exercise& other);
     Exercise& operator=(const Exercise& other);
 
+    // Getters
     string getName()     const;
     int    getSets()     const;
     int    getReps()     const;
     string getDuration() const;
     string getNotes()    const;
 
+    // Setters
     void setName(string v);
     void setSets(int v);
     void setReps(int v);
@@ -50,10 +54,12 @@ public:
     WorkoutDay(const WorkoutDay& other);
     WorkoutDay& operator=(const WorkoutDay& other);
 
-    int    getDayNumber()    const;
-    string getFocus()        const;
-    int    getExerciseCount()const;
+    // Getters
+    int    getDayNumber()     const;
+    string getFocus()         const;
+    int    getExerciseCount() const;
 
+    // Setters
     void setDayNumber(int v);
     void setFocus(string v);
 
@@ -87,6 +93,7 @@ public:
     Workout& operator=(const Workout& other);
     ~Workout();
 
+    // Getters
     int    getWorkoutID()     const;
     string getName()          const;
     string getDescription()   const;
@@ -95,6 +102,7 @@ public:
     int    getDurationWeeks() const;
     int    getDayCount()      const;
 
+    // Setters
     void setWorkoutID(int v);
     void setName(string v);
     void setDescription(string v);
@@ -114,21 +122,34 @@ public:
     void loadFromFile(ifstream& ifs);
 };
 
+// links one member to one workout plan
 class MemberWorkoutAssignment {
-public:
+private:
     string memberId;
     int    workoutID;
     string startDate;
     string progressNote;
 
+public:
     MemberWorkoutAssignment();
     MemberWorkoutAssignment(string mid, int wid, string date);
+
+    // Getters
+    string getMemberId()      const;
+    int    getWorkoutID()     const;
+    string getStartDate()     const;
+    string getProgressNote()  const;
+
+    // Setters
+    void setWorkoutID(int wid);
+    void setStartDate(string date);
+    void setProgressNote(string note);
 
     void saveToFile(ofstream& ofs)  const;
     void loadFromFile(ifstream& ifs);
 };
 
-// manages all plans + assignments
+// manages all workout plans + member assignments
 class WorkoutManager {
 private:
     Workout                  workouts[100];
@@ -142,7 +163,7 @@ public:
     WorkoutManager();
 
     void addWorkout();
-    void viewAllWorkouts()     const;
+    void viewAllWorkouts()         const;
     void viewWorkoutDetail(int id) const;
     void searchWorkout(string keyword) const;
     void updateWorkout(int id);
@@ -161,12 +182,13 @@ public:
     Workout* findByID(int id);
     bool     workoutExists(int id) const;
 
-    void saveToFile()        const;
+    void saveToFile()      const;
     void loadFromFile();
-    void saveAssignments()   const;
+    void saveAssignments() const;
     void loadAssignments();
 
     int getCount() const { return workoutCount; }
 };
 
 #endif
+
