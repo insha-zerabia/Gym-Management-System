@@ -14,8 +14,7 @@ void flushInputLine()
 }
 
 
-// HELPER: convert a string of digit characters into an integer
-// returns true on success, false if the string is empty or has a non-digit
+//convert a string of digit characters into an integer
 bool stringToInt(const string& str, int& result)
 {
     if (str.empty())
@@ -33,15 +32,14 @@ bool stringToInt(const string& str, int& result)
 }
 
 
-// HELPER: extract one field from a line, reading up to the next '|' or end
-// Replaces: getline(stringstream, field, '|')
+//extract one field from a line, reading up to the next '|' or end
 bool extractField(const string& line, int& startPos, string& field)
 {
-    // nothing left to read
+
     if (startPos >= (int)line.length())
         return false;
 
-    field = "";   // clear the destination
+    field = "";   
 
     int i = startPos;
     while (i < (int)line.length() && line[i] != '|')
@@ -49,8 +47,6 @@ bool extractField(const string& line, int& startPos, string& field)
         field += line[i];
         i++;
     }
-
-    // move startPos past the '|' so the next call starts on the next field
     startPos = i + 1;
     return true;
 }
@@ -71,7 +67,7 @@ UserAccount::~UserAccount()
 }
 
  
-// Private: growArray  — doubles the capacity when the array is full
+//growArray
 void UserAccount::growArray()
 {
     capacity *= 2;
@@ -82,7 +78,7 @@ void UserAccount::growArray()
     members = newArr;
 }
 
-// Private: findIndexById  — linear search, returns index or -1
+//findIndexById linear search, returns index or -1
 int UserAccount::findIndexById(string id) const
 {
     for (int i = 0; i < memberCount; i++)
@@ -97,7 +93,7 @@ void UserAccount::loadFromFile()
 {
     ifstream fin(dataFile);
     if (!fin.is_open())
-        return;   // file does not exist yet — perfectly normal on first run
+        return;  
 
     string line;
     while (getline(fin, line))
@@ -107,7 +103,7 @@ void UserAccount::loadFromFile()
             continue;
         }
 
-        int pos = 0;   // tracks our position as we walk through the line
+        int pos = 0;  
         string id, name, ageStr, phone, type, pwd;
 
         // extract all six fields one by one
@@ -137,7 +133,6 @@ void UserAccount::loadFromFile()
             continue;
         }
 
-        // convert age string to integer
         int age = 0;
         if (!stringToInt(ageStr, age))
         {
@@ -180,13 +175,12 @@ void UserAccount::saveToFile() const
 
 
 // addMember  
-// — interactive prompt to add a new member
 void UserAccount::addMember()
 {
     string id, name, phone, type, pwd;
     int age = 0;
 
-    flushInputLine();   // clear leftover newline from the menu's cin >>
+    flushInputLine();  
 
     cout << "\n--- Add New Member ---" << endl;
 
