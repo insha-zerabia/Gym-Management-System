@@ -15,14 +15,14 @@ private:
 	string membershipType;
 
 public:
-		void displayDashboard() const override;
-		string getRole() const override;
+	void displayDashboard() const override;
+	string getRole() const override;
 
-	Member(); //default
-	Member(int age, string name, string memberId, string phoneNumber, string membershipType, string password);// parameterized
-	Member(const Member& other);      // Copy constructor
-	Member& operator=(const Member& other);  // Assignment operator
-	~Member();//destructor
+	Member();
+	Member(int age, string name, string memberId, string phoneNumber, string membershipType, string password);
+	Member(const Member& other);     
+	Member& operator=(const Member& other); 
+	~Member();
 
 	// Setters
 	void setAge(int);
@@ -40,14 +40,14 @@ public:
 	string getMembershipType() const;
 
 	// Display full record
-	// (admin view — shows password hash marker, not plain text)
+	//(admin view
 	void display() const;
 
-	// Display own profile
-	// (user/member view — no password shown)
+
+	//Display own profile
+	//member view — no password shown
 	void displayOwnProfile() const;
 
-	// Let the member interactively update their own fields
 	void update() ;
 };
 

@@ -8,14 +8,14 @@ class UserAccount
 {
 
 private:
-    Member** members;       // dynamic array of Member pointers
-    int      memberCount;   // current number of members
-    int      capacity;      // allocated capacity of the array
-    string   dataFile;      // file path for persistent storage
+    Member** members;       
+    int      memberCount;  
+    int      capacity;      
+    string   dataFile;      
 
     // Internal helpers
-    void     growArray();                        // doubles capacity when full
-    int      findIndexById(string id) const;     // returns index or -1
+    void     growArray();                        
+    int      findIndexById(string id) const;     
 
     //File I/O 
     void loadFromFile();
@@ -24,7 +24,6 @@ private:
 public:
     void showMemberOwnProfile(string id) const;
     void saveToFile() const;
-    // Constructor / Destructor
     UserAccount(string filename = "members.txt");
     ~UserAccount();
 
@@ -35,13 +34,13 @@ public:
     void updateMember(string id);
     void deleteMember(string id);
 
+
     //User-side operations 
     // Returns pointer to the logged-in Member, or nullptr on failure
-
     Member* login(string id, string password) const;
 
-    // Show the logged-in member's own profile
 
+    // Show the logged-in member's own profile
     void showOwnProfile(const Member* loggedIn) const;
 
     int  getMemberCount() const 
